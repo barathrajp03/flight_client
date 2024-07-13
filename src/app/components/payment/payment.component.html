@@ -1,0 +1,55 @@
+<!-- payment.component.html -->
+
+<div class="payment-details">
+    <h2>Payment Details</h2>
+  
+    <!-- Payment Method Selection -->
+    <div>
+      <label>Select Payment Method:</label>
+      <select [(ngModel)]="selectedPaymentMethod" (change)="onPaymentMethodChange()">
+        <option value="upi">UPI</option>
+        <option value="card">Card</option>
+      </select>
+    </div>
+  
+    <!-- Common Payment Details -->
+    <div>
+      <label><strong>Payment ID:</strong></label>
+      <input type="text" [(ngModel)]="paymentDetails.paymentId">
+    </div>
+    <div>
+      <label><strong>User Email:</strong></label>
+      <input type="text" [(ngModel)]="paymentDetails.userEmail">
+    </div>
+    <div>
+      <label><strong>Payment Date:</strong></label>
+      <input type="text" [(ngModel)]="paymentDetails.paymentDate">
+    </div>
+    <div>
+      <label><strong>Amount:</strong></label>
+      <input type="text" [(ngModel)]="paymentDetails.amount">
+    </div>
+  
+    <!-- Conditional UPI Details -->
+    <div *ngIf="selectedPaymentMethod === 'upi' && upiInfo">
+      <h3>UPI Details</h3>
+      <div>
+        <label><strong>UPI ID:</strong></label>
+        <input type="text" [(ngModel)]="upiInfo.upiId">
+      </div>
+    </div>
+  
+    <!-- Conditional Card Details -->
+    <div *ngIf="selectedPaymentMethod === 'card' && cardInfo">
+      <h3>Card Details</h3>
+      <div>
+        <label><strong>Card Number:</strong></label>
+        <input type="text" [(ngModel)]="cardInfo.cardNumber">
+      </div>
+      <div>
+        <label><strong>Card Expiry:</strong></label>
+        <input type="text" [(ngModel)]="cardInfo.cardExpiry">
+      </div>
+    </div>
+  </div>
+  

@@ -1,0 +1,72 @@
+<div *ngIf="flight" class="booking-container">
+    <h2>Booking for Flight: {{ flight.flightName }}</h2>
+    <div class="flight-details">
+      <p>Flight ID: {{ flight.flightId }}</p>
+      <p>Total Seats: {{ flight.totalSeats }}</p>
+      <p>Available Seats: {{ flight.avilableSeats }}</p>
+      <p>Source: {{ flight.source }}</p>
+      <p>Destination: {{ flight.destination }}</p>
+      <p>Date: {{ flight.date }}</p>
+      <p>Price: {{ flight.price }}</p>
+      <p>Departure: {{ flight.departure }}</p>
+      <p>Arrival: {{ flight.arrival }}</p>
+    </div>
+  
+    <form (ngSubmit)="bookFlight()">
+      <div class="form-group">
+        <label for="noOfPersons">Number of Persons</label>
+        <input type="number" id="noOfPersons" [(ngModel)]="booking.noOfPersons" name="noOfPersons" (change)="updatePassengerList()" required>
+      </div>
+  
+      <div class="seat-selection">
+        <h3>Select Seats</h3>
+        <div class="seats-container">
+          <div *ngFor="let seat of seats" 
+               [class.selected]="seat.selected" 
+               [class.booked]="seat.booked" 
+               (click)="toggleSeatSelection(seat)">
+            {{ seat.number }}
+          </div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="seatNumbers">Selected Seats</label>
+        <input type="text" id="seatNumbers" [(ngModel)]="booking.seatNumbers" name="seatNumbers" readonly required>
+      </div>
+
+      <div class="form-group">
+        <h3>Total Cost: {{ booking.totalCost }}</h3>
+      </div>
+  
+      <div class="form-group" *ngFor="let passenger of booking.passengerList; let i = index">
+        <h3>Passenger {{ i + 1 }}</h3>
+        <label for="firstName">First Name</label>
+        <input type="text" [(ngModel)]="passenger.firstName" name="firstName{{i}}" required>
+  
+        <label for="lastName">Last Name</label>
+        <input type="text" [(ngModel)]="passenger.lastName" name="lastName{{i}}" required>
+  
+        <label for="age">Age</label>
+        <input type="text" [(ngModel)]="passenger.age" name="age{{i}}" required>
+  
+        <label for="gender">Gender</label>
+        <input type="text" [(ngModel)]="passenger.gender" name="gender{{i}}" required>
+  
+        <label for="mailId">Email</label>
+        <input type="email" [(ngModel)]="passenger.mailId" name="mailId{{i}}" required>
+  
+        <label for="phoneNumber">Phone Number</label>
+        <input type="text" [(ngModel)]="passenger.phoneNumber" name="phoneNumber{{i}}" required>
+  
+        <label for="passportNumber">Passport Number</label>
+        <input type="text" [(ngModel)]="passenger.passportNumber" name="passportNumber{{i}}" required>
+  
+        <label for="seatName">Seat Name</label>
+        <input type="text" [(ngModel)]="passenger.seatName" name="seatName{{i}}" required>
+      </div>
+      <button type="button" routerLink="/">Pay Now</button>
+      <button type="submit">Book Flight</button>
+    </form>
+  </div>
+  
