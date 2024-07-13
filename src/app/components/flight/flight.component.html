@@ -1,0 +1,73 @@
+<!-- <div class="search-section">
+    <div class="card mb-4 search-box">
+      <div class="card-header">Search Flight by Source, Destination, and Date</div>
+      <div class="card-body">
+        <div class="mb-3">
+          <label for="searchSource" class="form-label">Source</label>
+          <input type="text" class="form-control" id="searchSource" [(ngModel)]="searchSource">
+        </div>
+        <div class="mb-3">
+          <label for="searchDestination" class="form-label">Destination</label>
+          <input type="text" class="form-control" id="searchDestination" [(ngModel)]="searchDestination">
+        </div>
+        <div class="mb-3">
+          <label for="searchDate" class="form-label">Date</label>
+          <input type="date" class="form-control" id="searchDate" [(ngModel)]="searchDate">
+        </div>
+        <button class="btn btn-primary" (click)="searchBySourceAndDestinationAndDate()">Search</button>
+      </div>
+    </div>
+  
+    <div class="results-container">
+      <div class="flight-card" *ngFor="let flight of searchBySourceAndDestinationAndDateList">
+        <div class="card-body">
+          <h5 class="card-title">Flight ID: {{ flight.flightId }}</h5>
+          <p class="card-text">Name: {{ flight.flightName }}</p>
+          <p class="card-text">Total Seats: {{ flight.totalSeats }}</p>
+          <p class="card-text">Source: {{ flight.source }}</p>
+          <p class="card-text">Destination: {{ flight.destination }}</p>
+          <p class="card-text">Date: {{ flight.date }}</p>
+          <p class="card-text">Price: {{ flight.price }}</p>
+          <p class="card-text">Departure: {{ flight.departure }}</p>
+          <p class="card-text">Arrival: {{ flight.arrival }}</p>
+          <p class="card-text">Available Seats: {{ flight.avilableSeats }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+   -->
+
+   <!-- flight-search.component.html -->
+<div class="search-section">
+    <div class="search-box">
+      <label for="searchSource">Source</label>
+      <input type="text" id="searchSource" [(ngModel)]="searchSource">
+  
+      <label for="searchDestination">Destination</label>
+      <input type="text" id="searchDestination" [(ngModel)]="searchDestination">
+  
+      <label for="searchDate">Date</label>
+      <input type="date" id="searchDate" [(ngModel)]="searchDate">
+  
+      <button (click)="searchBySourceAndDestinationAndDate()">Search</button>
+    </div>
+  
+    <div class="results-container">
+      <div *ngFor="let flight of searchBySourceAndDestinationAndDateList" class="flight-card">
+        <h5>Flight ID: {{ flight.flightId }}</h5>
+        <!-- Display other flight details here -->
+        <p class="card-text">Name: {{ flight.flightName }}</p>
+        <p class="card-text">Total Seats: {{ flight.totalSeats }}</p>
+        <p class="card-text">Source: {{ flight.source }}</p>
+        <p class="card-text">Destination: {{ flight.destination }}</p>
+        <p class="card-text">Date: {{ flight.date }}</p>
+        <p class="card-text">Price: {{ flight.price }}</p>
+        <p class="card-text">Departure: {{ flight.departure }}</p>
+        <p class="card-text">Arrival: {{ flight.arrival }}</p>
+        <p class="card-text">Available Seats: {{ flight.avilableSeats }}</p> 
+        <button class="btn btn-primary" (click)="bookFlight(flight)" routerLink="/booking">Book</button>
+      </div>
+      
+    </div>
+  </div>
+  
